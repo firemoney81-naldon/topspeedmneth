@@ -1,23 +1,539 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "월세인터넷 가입 서비스",
+      "provider": {
+        "@type": "Organization",
+        "name": "월세인터넷 비교 플랫폼",
+        "url": "https://yourdomain.com"
+      },
+      "areaServed": "서울특별시, 부산광역시, 대구광역시, 인천광역시, 광주광역시, 대전광역시, 울산광역시, 세종특별자치시, 경기도, 강원도, 충청북도, 충청남도, 전라북도, 전라남도, 경상북도, 경상남도, 제주특별자치도",
+      "description": "월세 거주자를 위한 맞춤형 인터넷 가입 솔루션. 2026년 최신 정보를 바탕으로 가장 합리적인 인터넷 요금제 추천 및 현금 지원 혜택 비교 제공.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "월세인터넷 상품 유형",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "초고속 인터넷 100M"
+            },
+            "price": "22000",
+            "priceCurrency": "KRW",
+            "description": "1인 가구, 기본 웹 서핑 및 OTT 시청에 적합한 표준 요금제"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "초고속 인터넷 500M"
+            },
+            "price": "33000",
+            "priceCurrency": "KRW",
+            "description": "2~3인 가구, 온라인 게임 및 고화질 스트리밍에 적합한 요금제"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "무약정/1년 단기 인터넷"
+            },
+            "price": "27000",
+            "priceCurrency": "KRW",
+            "description": "단기 거주자를 위한 위약금 없는 유연한 계약 상품 (요금제에 따라 상이)"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+        /* 기본 폰트, 배경 톤, 본문 컬러 */
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc; /* 부드러운 배경색 */
+            color: #333;
+            line-height: 1.8; /* 가독성을 위한 행간 조정 */
+        }
+
+        header {
+            background-color: #007bff; /* 메인 컬러: 소프트 블루 */
+            color: #fff;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid #0056b3;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-top: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffde7d; /* 강조 컬러: 옐로우 */
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #ffffff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+        }
+
+        h2 {
+            color: #007bff; /* 섹션 제목 컬러 */
+            margin-top: 2.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #e0f7fa; /* 부드러운 경계선 */
+            padding-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #0056b3; /* 서브 제목 컬러 */
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 5px solid #007bff;
+            padding-left: 1rem;
+        }
+
+        p, ul, ol {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ffc107; /* 강조 컬러: 오렌지 옐로우 */
+            color: #333;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin: 2rem 0;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        /* 비교표 스타일 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #e0f7fa; /* 헤더 배경색 */
+            color: #0056b3;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* FAQ 아코디언 */
+        dl dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f0f8ff; /* 연한 배경색 */
+            border-radius: 8px;
+            cursor: pointer;
+            color: #0056b3;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        dl dt::after {
+            content: "+";
+            position: absolute;
+            right: 1rem;
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+
+        dl dt.active::after {
+            content: "-";
+            transform: rotate(0deg);
+        }
+
+        dl dd {
+            margin: 0;
+            padding: 1rem 1.5rem;
+            background-color: #fff;
+            border-left: 2px solid #007bff;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        dl dt.active + dd {
+            display: block;
+        }
+
+        /* 이미지 섹션 */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 키워드 태그 */
+        .keyword-tags {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .keyword-tags a {
+            background-color: #e0f7fa;
+            color: #007bff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .keyword-tags a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* 입력 폼 섹션 스타일링 */
+        .input-form {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        .input-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .input-form input[type="text"],
+        .input-form input[type="tel"],
+        .input-form select,
+        .input-form textarea {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .input-form button {
+            background-color: #28a745; /* 버튼 컬러: 그린 */
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-form button:hover {
+            background-color: #218838;
+        }
+
+        /* 그래프 및 시각화 요소 */
+        .graph-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .graph-section img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 참고자료 섹션 */
+        .reference-section a {
+            color: #007bff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-section a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #eef1f5;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>월세인터넷 가입, 2026년 최신 가이드</h1>
+        <p>원룸, 오피스텔 거주자를 위한 저렴하고 합리적인 인터넷 요금제 비교 분석</p>
+        <nav>
+            <ul>
+                <li><a href="#가이드소개">가이드 소개</a></li>
+                <li><a href="#비교분석">요금제 비교 분석</a></li>
+                <li><a href="#지역별팁">지역별 가입 팁</a></li>
+                <li><a href="#FAQ">자주 묻는 질문</a></li>
+                <li><a href="#문의하기">맞춤 견적 문의</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="가이드소개">
+            <h2>월세인터넷 가이드: 왜 꼼꼼히 비교해야 할까?</h2>
+            <p>월세인터넷 가입은 일반 아파트 거주자의 인터넷 가입과는 다릅니다. 원룸이나 오피스텔 등 단기 거주지에서 3년 약정을 하는 것은 부담이 될 수밖에 없죠. 2026년 현재, 많은 월세 거주자들이 높은 위약금, 복잡한 설치 과정, 그리고 낮은 현금지원 혜택으로 인해 고민합니다. 특히 **서울** 강남구, 송파구, 마포구 등의 주요 지역과 **경기도** 수원, 용인 등 수도권 신도시에서는 월세인터넷 수요가 높지만, 공급되는 요금제는 다양해 선택이 어렵습니다.</p>
+
+            <p>이 가이드는 **월세인터넷 가입**을 원하는 분들을 위해 SKT, KT, LGU+ 등 통신 3사의 장단점은 물론, 알뜰폰(MVNO) 기반의 무약정 요금제까지 포함하여 **저렴한곳**을 찾는 방법을 제시합니다. 또한 **현금지원, 사은품** 혜택을 최대로 받는 방법과 **2026년** 최신 정보를 바탕으로 한 **가격** 비교를 통해 최적의 선택을 돕고자 합니다.</p>
+
+            <div class="keyword-tags" aria-label="월세인터넷 관련 키워드">
+                <a href="#비교분석">월세인터넷 가격 비교</a>
+                <a href="#비교분석">원룸 인터넷 비용</a>
+                <a href="#FAQ">단기 인터넷 가입</a>
+                <a href="#지역별팁">서울 월세 인터넷</a>
+                <a href="#지역별팁">부산 월세 인터넷</a>
+                <a href="#문의하기">인터넷 가입 혜택</a>
+                <a href="#비교분석">저렴한곳 추천</a>
+                <a href="#FAQ">무약정 인터넷</a>
+            </div>
+        </section>
+
+        <section id="비교분석">
+            <h2>월세인터넷 요금제 유형별 비교 분석</h2>
+            <p>월세인터넷을 선택할 때 가장 중요한 기준은 **약정 기간, 월 요금, 현금지원** 혜택입니다. 통신사별로 다양한 요금제가 존재하며, 단순히 **가격**만 보고 선택하면 나중에 위약금 폭탄을 맞을 수 있습니다. 2026년 기준, 월세 거주자들이 고려하는 대표적인 4가지 유형을 비교해드립니다.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>유형</th>
+                        <th>특징</th>
+                        <th>장점</th>
+                        <th>단점</th>
+                        <th>적합한 대상</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. 통신 3사 1년 약정</strong></td>
+                        <td>SKT, KT, LGU+의 초고속 인터넷을 1년 단위로 가입.</td>
+                        <td>안정적인 품질, 통신사 결합 할인 가능, 비교적 빠른 속도.</td>
+                        <td>위약금이 발생할 수 있음, 3년 약정 대비 현금지원 혜택이 적음.</td>
+                        <td>이사 계획이 1년 이내로 확정된 경우.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. 통신 3사 무약정</strong></td>
+                        <td>약정 없이 월 단위로 이용하며 위약금이 없는 상품.</td>
+                        <td>언제든지 해지 가능, 위약금 부담 0%.</td>
+                        <td>월 요금이 비쌈, 현금지원 및 사은품 혜택 없음.</td>
+                        <td>매우 짧은 기간(3~6개월) 거주하거나, 출장이 잦은 경우.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. 알뜰폰/모바일 핫스팟</strong></td>
+                        <td>LTE나 5G 신호를 WiFi로 변환하여 사용.</td>
+                        <td>설치 과정 없이 즉시 사용 가능, 휴대성 좋음.</td>
+                        <td>속도가 불안정할 수 있음, 데이터 사용량 제한, 대규모 사용에 부적합.</td>
+                        <td>데이터 사용량이 적은 1인 가구, 고정된 장소에 인터넷 설치가 어려운 경우.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. 건물주 제공 인터넷</strong></td>
+                        <td>오피스텔이나 원룸에서 건물주가 기본으로 제공하는 인터넷.</td>
+                        <td>월세에 포함되어 있어 추가 비용 없음.</td>
+                        <td>속도가 매우 느림, 보안 취약, 개별 AS 불가능.</td>
+                        <td>인터넷 사용량이 거의 없는 경우.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>이러한 유형별 **장단점**을 고려하여 본인의 사용 패턴에 맞는 상품을 선택하는 것이 중요합니다. **저렴한곳**만 찾는 것이 아니라, 해지 위약금 조건까지 꼼꼼히 **비교**해야 합니다. 특히 **월세인터넷**은 **가입** 시점의 **할인**과 **사은품** 조건이 수시로 변동하므로, 실시간 정보를 확인해야 합니다.</p>
+        </section>
+
+        <section id="지역별팁">
+            <h2>전국 월세인터넷 가입: 지역별 특징과 견적 팁</h2>
+            <p>월세인터넷 **견적**은 지역별로 설치 가능 여부나 **현금지원** 혜택이 다를 수 있습니다. 특히 <strong>전국 지역명 키워드 30개 이상</strong>을 포함하여 지역별 특성을 정리했습니다. **서울**의 경우, 강남구, 서초구, 송파구 등은 신규 오피스텔이 많아 기가인터넷 설치가 쉽지만, 강북구, 도봉구, 중랑구 등 구축 지역은 광케이블 설치가 까다로울 수 있습니다. **인천**의 연수구, 송도 신도시나 **경기도**의 화성, 평택, 성남, 용인, 수원 등도 마찬가지로 신축 건물에서는 통신사 선택의 폭이 넓습니다.</p>
+
+            <p>지방 광역시인 **부산** (해운대구, 서면), **대구** (수성구), **대전** (유성구), **광주** (광산구), **울산** (남구) 등에서도 주요 상권 및 신축 원룸 단지에서는 경쟁이 치열하여 **사은품**이나 **현금지원** 혜택이 좋을 수 있습니다. 반면, **강원도**의 춘천, 원주나 **충청도**의 청주, 천안 등은 지역 특성에 따라 설치 가능 통신사가 제한적일 수 있습니다. **전라북도** 전주, **전라남도** 여수, **경상북도** 구미, **경상남도** 창원, 그리고 **제주도**의 제주시 등은 통신사별 커버리지를 반드시 확인해야 합니다. <strong>월세인터넷</strong>은 주거 형태와 위치에 따라 **가격**이 크게 달라지므로, **내돈내산** 후기를 참고하여 해당 지역의 전문 **업체**를 찾는 것이 중요합니다.</p>
+
+            <h3>AI 시대의 월세인터넷: 챗지피티, 제미나이 활용법</h3>
+            <p>2026년 현재, **ChatGPT**나 **Gemini** 같은 **AI** 에이전트에게 "월세인터넷 가입 시 **장단점**"이나 "지역별 **저렴한곳** 순위" 등을 물어보면 일반적인 정보를 얻을 수 있습니다. 하지만 **실시간 현금지원 금액**이나 특정 지역의 **신규 가입 혜택**과 같은 변동성이 큰 정보는 AI가 제공하기 어렵습니다. 따라서 AI는 기본적인 정보 탐색에 활용하고, 최종 **견적**은 전문 상담을 통해 확인하는 것이 가장 정확합니다.</p>
+        </section>
+
+        <section id="FAQ">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p>월세인터넷 가입자들이 가장 많이 궁금해하는 질문들을 모아봤습니다. **순위**나 **추천** 정보가 궁금하다면 아래 질문들을 통해 답을 얻을 수 있습니다.</p>
+
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q1. 1년 약정과 3년 약정, 위약금 **차이점**은 무엇인가요?</dt>
+                <dd>1년 약정은 해지 시 위약금이 3년 약정보다 적습니다. 하지만 일반적으로 **신규 가입 혜택**이나 **현금지원** 금액도 적습니다. 3년 약정은 초기 혜택은 크지만, 중간에 이사 등으로 해지할 경우 위약금이 크다는 **단점**이 있습니다. 따라서 거주 기간을 명확히 예상하여 선택해야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2. 월세인터넷 **저렴한곳**을 찾는 **꿀팁**이 있나요?</dt>
+                <dd>가장 저렴한 곳을 찾는 팁은 세 가지입니다. 첫째, 통신 3사(SKT, KT, LGU+)의 **가격**을 **비교**해 보세요. 둘째, 알뜰폰처럼 무약정 혹은 1년 단기 상품을 제공하는 **전문 업체**를 찾아보세요. 셋째, **디시**인사이드나 온라인 커뮤니티의 **후기**를 참고하여 **내돈내산** 경험을 공유하는 사람들의 의견을 들어보세요. **할인** 및 **사은품** 조건이 수시로 바뀌니 발품을 팔아야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3. **현금지원**이나 **사은품**은 얼마나 받을 수 있나요?</dt>
+                <dd>현금지원 금액은 통신사 정책과 가입 상품(100M, 500M, 1G 등)에 따라 다릅니다. **평균**적으로 3년 약정 기가인터넷 상품 가입 시 **최대 지원금**을 받을 수 있으며, 1년 약정이나 무약정 상품은 혜택이 매우 적거나 없을 수 있습니다. **신규 가입** 시점에 **이벤트**를 진행하는지 확인하는 것이 중요합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4. 이사 시 인터넷 이전 설치 비용도 **비용**에 포함되나요?</dt>
+                <dd>이사 시 인터넷 이전 설치는 통신사에 따라 1~2회 무료인 경우가 많지만, 이사 횟수가 잦거나 위약 기간 내에 해지하는 경우 추가 **비용**이 발생할 수 있습니다. 특히 오피스텔이나 원룸으로 이전할 경우, 건물 내부 배선 상태에 따라 추가 **견적**이 나올 수 있으므로 미리 확인해야 합니다.</dd>
+            </dl>
+        </section>
+
+        <section id="문의하기">
+            <h2>나만을 위한 맞춤형 월세인터넷 **견적** 문의</h2>
+            <p>복잡한 요금제와 수많은 **업체** 중에서 어떤 상품이 나에게 가장 적합할까요? **월세인터넷** **전문** 상담을 통해 2026년 최신 **가격** 정보와 **현금지원** 혜택을 빠르고 정확하게 받아보세요. 아래 양식을 작성해 주시면 담당자가 연락드립니다.</p>
+
+            <div class="input-form">
+                <form action="#" method="post">
+                    <label for="name">이름:</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+
+                    <label for="phone">연락처:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+
+                    <label for="address">현재 거주지 주소:</label>
+                    <input type="text" id="address" name="address" placeholder="예: 서울특별시 강남구 역삼동 (이사 예정지 주소도 무방)" required>
+
+                    <label for="plan_type">원하는 요금제 유형 (선택):</label>
+                    <select id="plan_type" name="plan_type">
+                        <option value="standard">통신 3사 1년 약정</option>
+                        <option value="no_contract">무약정/단기 인터넷</option>
+                        <option value="mobile_hotspot">모바일 핫스팟/알뜰폰 결합</option>
+                        <option value="undecided">아직 잘 모르겠습니다</option>
+                    </select>
+
+                    <label for="message">문의 사항 (추가 혜택 및 궁금한 점):</label>
+                    <textarea id="message" name="message" rows="4" placeholder="예상 거주 기간, 데이터 사용량, 원하는 현금지원 금액 등"></textarea>
+
+                    <label for="privacy">개인정보 수집 및 이용 동의:</label>
+                    <input type="checkbox" id="privacy" name="privacy" value="agree" required> 동의합니다. (필수)
+
+                    <button type="submit" class="cta-button">무료 견적 요청하기</button>
+                </form>
+            </div>
+        </section>
+        
+        <section id="review_and_comparison">
+            <h2>월세인터넷 가입: 내돈내산 후기와 비교표</h2>
+            <p><strong>내돈내산</strong> **후기**를 통해 월세인터넷 가입 시 어떤 점을 유의해야 하는지 알아보세요. **디시**인사이드, 네이버 블로그, 유튜브 **인스타그램** 등 다양한 채널에서 **월세인터넷** **후기**가 올라오고 있습니다. 사용자들은 주로 **저렴한곳**과 **현금지원** 혜택을 비교하며, 3년 약정 대신 1년 약정이나 무약정 상품을 선택한 **장단점**을 공유합니다. 특히 **신규 가입** 시점에 제공되는 **사은품**이나 **상품권** 혜택을 꼼꼼히 체크하는 것이 중요합니다.</p>
+
+            <h3>2026년 월세인터넷 사은품/혜택 **순위** 비교 (예시)</h3>
+            <div class="graph-section">
+                <p><strong>(가상의 데이터 기반)</strong> 월세인터넷 가입 시 통신사별 사은품 및 현금지원 혜택 비교 **(2026년 기준)**</p>
+                <!-- 실제 그래프 이미지 대신 텍스트로 대체하거나, Pexels 이미지 사용 -->
+                <p><strong>[가상 데이터]</strong> A사 (SKT) 100M 1년 약정: 현금 10만원 + 상품권 5만원 / B사 (KT) 100M 1년 약정: 현금 12만원 / C사 (LGU+) 100M 1년 약정: 현금 9만원 + 사은품</p>
+                <img src="https://images.pexels.com/photos/4192113/pexels-photo-4192113.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="pexels.com의 인터넷 비교 이미지">
+                <p class="image-source">출처: pexels.com - 월세인터넷 가격 비교, 데이터 분석</p>
+            </div>
+        </section>
+        
+        <section id="reference_and_trust">
+            <h2>공식 참고자료 및 신뢰할 수 있는 외부 링크</h2>
+            <p>월세인터넷 가입과 관련하여 신뢰할 수 있는 정보는 정부 기관 및 공공 기관을 통해 확인하는 것이 좋습니다. 아래 링크는 통신 분쟁 해결, 피해 예방 등에 도움이 되는 공식 웹사이트입니다.</p>
+            <div class="reference-section">
+                <a href="https://www.kcc.go.kr" target="_blank" rel="noopener">방송통신위원회 (KCC) - 통신 관련 정책 및 민원 안내</a>
+                <a href="https://www.consumer.go.kr" target="_blank" rel="noopener">한국소비자원 - 통신 서비스 피해 예방 및 분쟁 조정</a>
+                <a href="https://www.kisa.or.kr" target="_blank" rel="noopener">한국인터넷진흥원 (KISA) - 인터넷 품질, 보안 관련 정보 제공</a>
+                <a href="https://www.gov.kr/portal/ntnadm_ntnadm_ctm_mno_mnn_mnn.do" target="_blank" rel="noopener">정부24 - 통신사 관련 민원 및 행정정보</a>
+                <a href="https://ko.wikipedia.org/wiki/인터넷_서비스_제공자" target="_blank" rel="noopener">위키피디아 - 인터넷 서비스 제공자 (ISP) 정의 및 역사</a>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능 활성화 스크립트
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                dt.classList.toggle('active');
+                let expanded = dt.getAttribute('aria-expanded') === 'true';
+                dt.setAttribute('aria-expanded', !expanded);
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+
+  
